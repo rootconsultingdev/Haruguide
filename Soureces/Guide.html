@@ -1,0 +1,758 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>고객관리시스템 사용 GUIDE</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2158c8cf-1248-8073-bcf9-f3048f30501d" class="page sans"><header><h1 class="page-title" dir="auto">고객관리시스템 사용 GUIDE</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="2168c8cf-1248-80d8-8a24-dbba45cb883d" class="">[ 빠른 이동 ]</p></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8069-8b4b-e352fa3f332b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8033-897a-e26ad09b641e" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-8096-b401-cdb601f25b16" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-8096-af17-fe35e9e0a2e4" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-8091-9eeb-c523feb91755" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-80f0-a95d-da7f67013deb" class=""> <div class="indented"><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-80a0-80e0-da46cdd86162" class=""> </p></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-8044-b00a-ca5fc138602f" class=""> </p></div></div></p></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-80d0-97e3-e5af6476dc81" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-805b-ad02-f651b06271d1" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-80eb-b871-ef0863fb3813" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-805c-9319-c1c63b62d63f" class=""> </p></div><div style="display:contents" dir="auto"><p id="2168c8cf-1248-80c3-bfb6-e3284e80e8e5" class=""> </p></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-802d-8e24-c0332e8fb78b" class=""> <br/><br/>고객관리 시스템 홈페이지 주소 ( URL )</p></div><div style="display:contents" dir="auto"><p id="2238c8cf-1248-803d-b48b-c6b7e3924ed6" class=""><a href="https://crm.rootcrm.synology.me:50443/dashboard">https://crm.rootcrm.synology.me:50443/dashboard</a><br/></p></div><div style="display:contents" dir="auto"><p id="2248c8cf-1248-8029-819a-c20ddf6a72d7" class="">** 시스템, 이렇게 하면 더 좋을 것 같아요~ ( 피드백 )<br/><a href="https://forms.gle/YftLSyj33689KEqy5">https://forms.gle/YftLSyj33689KEqy5</a></p></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-804a-8252-e071afd4099a" class="">
+</p></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">1. 로그인 페이지</summary><div class="indented"><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-8007-97a7-fd9e518312d9" class="column-list"><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-8022-be3f-d665e1fe8888" style="width:50%" class="column"><div style="display:contents" dir="ltr"><figure id="29b8c8cf-1248-805b-acb0-e2581c673eaf" class="image"><a href="Honeycam_2025-10-29_11-51-58.gif"><img style="width:709.9874877929688px" src="Honeycam_2025-10-29_11-51-58.gif"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2248c8cf-1248-80ff-b7fa-daa6da7b9805" class="image"><a href="image.png"><img style="width:624px" src="image.png"/></a></figure></div><div style="display:contents" dir="auto"><hr id="29b8c8cf-1248-8017-b641-ca11ac9f0327"/></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-8074-b8c1-df7eed43951f" class="image"><a href="image%201.png"><img style="width:336px" src="image%201.png"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-80fa-9286-effa53ffbffb" class="image"><a href="image%202.png"><img style="width:303.9875183105469px" src="image%202.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-800a-93ca-ed50818e34d3" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-8076-9314-e08f2f92f5fd" style="width:50%" class="column"><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-801a-b2fc-ddd6ed8940c1" class="">- 로그인 하기</h2></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-80fd-a3c5-c65b370e1b8c" class="">아이디와 비밀번호를 입력하여.<br/>로그인을 진행합니다.<br/></p></div><div style="display:contents" dir="auto"><ul id="29b8c8cf-1248-80e3-8507-ded40c23e3ae" class="bulleted-list"><li style="list-style-type:disc">ID : 각 이용자의 비즈메카 기준의 이메열명<br/>예시) <br/>고광윤 : <a href="mailto:gyko97@rootconsulting.co.kr">gyko97@rootconsulting.co.kr</a> <br/>→ 고객관리 시스템 ID : gyko97<br/>→ 최초 비밀번호 : 1</li></ul></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8047-9ca7-f222a1fd3a7c" class="">- 최초 로그인 시 비밀번호 변경을 권유드립니다.</p></div><div style="display:contents" dir="auto"><hr id="29b8c8cf-1248-8094-9f81-f4996bb35021"/></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-80ca-bbc4-d0fc43c31350" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="29b8c8cf-1248-8092-aa32-dfdab8265100" class="">내 정보 수정<br/>[비밀번호 변경하기]</h2></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8011-8677-ed628ce6eefd" class="">- 로그인 후 하단 이름 옆 톱니바퀴 버튼을 눌러 개인정보를 수정할 수 있습니다.<br/>→ 첫 로그인 시 비밀번호를 꼭 변경해주세요.<br/><br/><br/>※ <strong>비밀번호를 잊어버리셨을 때에는 <br/>P&amp;C에 요청하시어 <br/>비밀번호 초기화를 진행해주세요.</strong></p></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-80f2-a06d-df9e2af291e0" class="">
+</p></div></div></div></div></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">2. 메인 페이지</summary><div class="indented"><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-80b3-a2ac-e9a648ee22ee" class="column-list"><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-808a-a28c-fb07a94376a5" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-80ef-85c3-c87235fc3c30" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-801d-9265-f1b78de5a064" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-80ca-92c2-c92a0791353d" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-8096-a718-e2c4d806a7fc" class="image"><a href="image%203.png"><img style="width:681.9750366210938px" src="image%203.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2158c8cf-1248-809f-a657-f9eaaf058955" class=""><strong>[ 메인 페이지 ]</strong><br/>로그인을 완료하면, 다음과 같은 메인 화면을 확인할 수 있습니다.<br/></p></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8021-a6ee-f7b8c13ea120" class=""><strong>[1. 메인 페이지 상단]</strong></p></div><div style="display:contents" dir="auto"><ul id="29b8c8cf-1248-805f-8dbe-d8cdc8aa1026" class="bulleted-list"><li style="list-style-type:disc"> 과정 제안 필요 <br/>( 추후 홈페이지를 통해 들어온 문의에 대한 확인 및 응대 조회 부분 )</li></ul></div><div style="display:contents" dir="auto"><ul id="29b8c8cf-1248-8024-9866-e74697706aa6" class="bulleted-list"><li style="list-style-type:disc"> 전일 신규 고객 <br/>( 문의 확인 및 응대하면서 추가되는 고객 자료들 )</li></ul></div><div style="display:contents" dir="auto"><ul id="29b8c8cf-1248-8047-bc62-f2ddd2ca2770" class="bulleted-list"><li style="list-style-type:disc">전일 고객 문의 <br/>( 홈페이지로 들어온 문의 건 수 )</li></ul></div><div style="display:contents" dir="auto"><ul id="29b8c8cf-1248-800a-9fb8-ee50b09c4e22" class="bulleted-list"><li style="list-style-type:disc">전일 수주 <br/>( 최종적으로 과정 제안 및 수주되었을 때 이에 관련한 내용이 카운트되는 부분 )</li></ul></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-80e7-a793-c9efe5d3c5ee" class=""><strong>[2. 최근 과정 관리]<br/></strong>최근에 등록된 과정들이 보입니다.<br/><strong>과정이 보이는 기준 ( 우선순위 )<br/></strong>- 사용자 명과 같은 이름이 담당자인 과정 → 사용자 ID가 속한 부서의 과정 → 전체 최신 순</p></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8001-b988-c9d28f94ab1a" class=""><strong>[3. 전체 공지사항]<br/></strong>공지사항에서는 프로그램 사용에 필요한 내용, 혹은 공지할 사항들이 올라올 예정입니다.</p></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-80ce-a52b-e509f74403cb" class=""><strong>[4. 간이  일정표]<br/></strong>일정표를 통해 <br/>본인의 일정을 확인할 수 있습니다. </p></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-80d8-a27f-ec9ba299bf62" class=""><strong>[5. 사이드바]</strong></p></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-806a-9fc9-e9bf90a72846" class="">각 버튼들을 통해서, 메뉴 이동이 가능합니다.</p></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8093-9cb2-cd3f912461a0" class="bulleted-list"><li style="list-style-type:disc">공지사항</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-805b-bcc1-d142d10ce62c" class="bulleted-list"><li style="list-style-type:disc">고객관리</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80a5-8d23-ca3b8d3ce672" class="bulleted-list"><li style="list-style-type:disc">과정관리</li></ul></div><div style="display:contents" dir="auto"><ul id="2548c8cf-1248-8066-8d39-e0b77c6baa3e" class="bulleted-list"><li style="list-style-type:disc">제안 현황</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8057-9f87-e8d8141d2ac0" class="bulleted-list"><li style="list-style-type:disc">회의실 예약</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8075-a7a5-ca50d41722ec" class="bulleted-list"><li style="list-style-type:disc">개인 일정표</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80d1-81e3-e38623f9d3ad" class="bulleted-list"><li style="list-style-type:disc">교보재 관리 시스템</li></ul></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-8025-8da8-fdd74c51bba9" class=""><strong>[6. 내 정보 및 빠른 이동]</strong></p></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-8003-aab1-c091ae58146c" class="">나의 정보 수정 및 루트컨설팅의 각 플랫폼으로 이동하는 바로가기 버튼이 있습니다.</p></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">3. 공지사항</summary><div class="indented"><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8091-851e-c6905ee2d523" class="bulleted-list"><li style="list-style-type:disc">공지사항에서는 관리자가 올린 공지사항을 게시판 형태로 확인하실 수 있습니다</li></ul></div><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-80c9-be34-edb8caab2c65" class="image"><a href="image%204.png"><img style="width:709.9874877929688px" src="image%204.png"/></a></figure></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">4. 고객관리</summary><div class="indented"><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80b9-8f21-d22c3ed3c755" class="bulleted-list"><li style="list-style-type:disc">등록한 고객의 기업명, 부서, 이름, 직급, 연락처, 이메일을 확인할 수 있습니다.<div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-80f2-9f56-c064761f04e6" class="">1. 고객 관리 검색 가능한 내용</h2></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8075-8602-cb6e73b31215" class="bulleted-list"><li style="list-style-type:circle">고객 성함, 기업명, 부서, 직급, 연락처, 이메일. 메모(고객 별 특성을 작성 및 저장 가능)</li></ul></div><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-8038-8948-c69fc4a69d64" class="image"><a href="image%205.png"><img style="width:653.9750366210938px" src="image%205.png"/></a></figure></div></li></ul></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8048-adee-dbd30cf81a6e" class="">
+</p></div><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-80c5-b15a-effdca24440f" class="column-list"><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-803f-ba2f-f23e359f3816" style="width:93.75%" class="column"><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-8008-9a3a-c8a71b55a727" class="image" style="text-align:center"><a href="image%206.png"><img style="width:240px" src="image%206.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-80a7-91ab-efc3708306dc" style="width:106.25%" class="column"><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-80a9-b822-c1ea67c8529a" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-80cd-87ae-eb5126ea02b7" class="">2. 고객 등록 방법</h2></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8038-81c8-f51f54710ef6" class="bulleted-list"><li style="list-style-type:disc">&#x27;신규 고객 등록&#x27; 버튼을 클릭하여 정보를 입력합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80c5-b98f-f44a45ede6f4" class="bulleted-list"><li style="list-style-type:disc">필수 입력 항목 : 이름, 기업명</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80e3-9bfc-e6c147a5d77b" class="bulleted-list"><li style="list-style-type:disc">**가능한 많은 정보를 입력해주시기를 부탁드립니다. ( 같은 고객의 중복등록 방지를 위함 )</li></ul></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-80c4-9183-e28c6605eba8" class="">등록된 고객 수정 방법</h2></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-802d-a698-c2c5df83b611" class="bulleted-list"><li style="list-style-type:disc">고객 목록에서 해당 고객을 선택하면.<br/>우측의 고객 등록 창으로 들어갑니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="29b8c8cf-1248-802b-8cbc-ece1a3803b9c" class="bulleted-list"><li style="list-style-type:disc">수정 버튼을 눌러서 수정 시작, <br/>수정 완료 버튼을 통해 정보를 수정합니다.</li></ul></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-801c-8f62-f2cb996e36be" class="">
+</p></div></div></div></div></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">5. 과정 관리</summary><div class="indented"><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-80fd-9d10-d3c55c986ad4" class="image"><a href="image%207.png"><img style="width:681.9874877929688px" src="image%207.png"/></a></figure></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-8079-99d5-ed0686ad6bf2" class="">과정 조회 가능한 내용 (요약)</h2></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-804d-a6dc-f800deef6200" class="bulleted-list"><li style="list-style-type:disc">기업명, 과정명, 루트 내부 담당자명, 고객명, 과정 카테고리, 교육대상, 프로그램명, 사용 진단. </li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-805e-9264-c13546ad8351" class="bulleted-list"><li style="list-style-type:disc">과정이 수주되었는지. 진행 상태는 어떤지도 함께 조회 가능합니다.</li></ul></div><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-805a-b251-e2aa50d17d6f" class="column-list"><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-80e3-8ebb-ff1f0b47f08b" style="width:100.00000000000003%" class="column"><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-804f-bdbe-fe2597603cbe" class="image"><a href="image%208.png"><img style="width:681.96875px" src="image%208.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="29b8c8cf-1248-80bc-87d3-c7d0ff707bd3" style="width:200.00000000000009%" class="column"><div style="display:contents" dir="auto"><h2 id="29a8c8cf-1248-80de-80ac-cfa2b8c82149" class="">과정 조회 가능한 내용 (상세)</h2></div><div style="display:contents" dir="auto"><ul id="29a8c8cf-1248-802c-af85-cc86a459ba5c" class="bulleted-list"><li style="list-style-type:disc">각 과정을 클릭하였을 때, <br/>과정의 상세 정보를 확인하실 수 있습니다.<br/><strong>이 때, ‘각 과정의 매출 내역’ <br/>또한 입력 및 조회가 가능합니다.<br/>매출 등록과 관련된 내용은, 하단의 ‘과정의 매출을 등록하는 방법’ 을 확인해주세요.</strong></li></ul></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8047-b486-f2d0629ab9d9" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">신규 과정 추가 방법</summary><div class="indented"><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-801f-813e-c447e2dc80b5" class="image"><a href="%EA%B3%BC%EC%A0%95_%EB%93%B1%EB%A1%9D.gif"><img style="width:653.9750366210938px" src="%EA%B3%BC%EC%A0%95_%EB%93%B1%EB%A1%9D.gif"/></a></figure></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8093-933e-e1e19652984f" class="bulleted-list"><li style="list-style-type:disc">고객 관리 탭에서 과정을 추가할 수 있습니다.<br/>오른쪽 상단에 위치한 과정 추가 버튼을 통하여 신규 과정 등록을 시작할 수 있습니다.</li></ul></div><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-80b6-8415-e269d4ec22bf" class="image"><a href="%EA%B3%BC%EC%A0%95_%EB%93%B1%EB%A1%9D2.gif"><img style="width:681.9874877929688px" src="%EA%B3%BC%EC%A0%95_%EB%93%B1%EB%A1%9D2.gif"/></a></figure></div><div style="display:contents" dir="auto"><ul id="29a8c8cf-1248-8041-9606-d06bba09f3fb" class="bulleted-list"><li style="list-style-type:disc">과정 등록에서는 다음과 같은 정보들을 입력해주셔야 합니다.<br/><strong>기본 정보 : 과정명, 카테고리, 진행 상태, 수주 여부<br/>담당자 정보 : 과정을 진행한 부서, 과정의 담당자</strong><br/>*고객이 요청한 제안 마감일(정해져 있지 않은 경우, 제안서 전달 예정일로 선택해주세요.)</li></ul></div><div style="display:contents" dir="auto"><ul id="2548c8cf-1248-80e8-8336-f4d7a4de09dc" class="bulleted-list"><li style="list-style-type:disc">진행 상태 탭에서 제안 중인 경우에는, <strong>6. 제안 현황</strong> 탭에서 확인할 수 있습니다.<br/>제안이 완료된 경우 또한 <strong>6. 제안 현황</strong> 탭에서 진행 상황을 확인하실 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2548c8cf-1248-8095-a000-debf274b7ad2" class="bulleted-list"><li style="list-style-type:disc"><strong>미수주 시에는, 제안 완료 - 수주 여부 X 표시를 해 주시고.<br/>[비고] 란에 미수주 사유를 꼭 적어주세요. </strong></li></ul></div><div style="display:contents" dir="auto"><ul id="2578c8cf-1248-803b-a429-db99fa4e83b3" class="bulleted-list"><li style="list-style-type:disc"><strong>(중요) 관련 자료 등록 시 NAS에 자동 동기화가 진행됩니다.<br/>양식에 맞추어 자료를 등록해주세요.<br/></strong><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-80d9-a80f-c123191046b5" class="image"><a href="image%209.png"><img style="width:448.875px" src="image%209.png"/></a></figure></div><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-80e8-81fc-e766a054eaa4" class="image"><a href="image%2010.png"><img style="width:420.984375px" src="image%2010.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-8099-a844-fa6a6a7b332e" class=""><strong>※자료 자동 동기화는 어떻게 진행되는가?</strong><br/>’강의안’ , ’견적서’, ’교보재’, ’운영자료’, ’제안서’<br/>각 단어가 포함된 경우, 자동으로 폴더에 저장됩니다.<br/>* 영상의 경우 ‘.mp4’ 파일이 등록될 경우, 영상 폴더로 자동으로 이동됩니다.<br/><br/>ex) 고객사명_과정명_강의안 → 강의안 폴더<br/>여러 단어가 혼재된 경우 위 순서대로 우선순위 적용.<br/>고객사명_과정명_ 프로그램 제안_견적서 <br/>→ 견적서가 우선순위이니 견적서 폴더로<br/><br/>만약 저 단어들이 들어있지 않다면?<br/>각 분류 폴더에는 들어가지 않은 상태로 과정명 폴더 안에 위치하게 됩니다. </p></div></li></ul></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">과정의 매출을 등록하는 방법</summary><div class="indented"><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-803a-bebe-dd56cf8a3a38" class="image"><a href="%EB%A7%A4%EC%B6%9C2.gif"><img style="width:653.96875px" src="%EB%A7%A4%EC%B6%9C2.gif"/></a></figure></div><div style="display:contents" dir="auto"><ul id="29a8c8cf-1248-809c-b4be-c15e31b542ba" class="bulleted-list"><li style="list-style-type:disc">과정 상세 내역에서, 우측 하단에 보이는 ‘매출 수정’ 을 클릭하여 진입합니다.<div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-8090-9fb0-f21a05b7e04d" class="image"><a href="%EB%A7%A4%EC%B6%9C3.gif"><img style="width:681.984375px" src="%EB%A7%A4%EC%B6%9C3.gif"/></a></figure></div></li></ul></div><div style="display:contents" dir="auto"><ul id="29a8c8cf-1248-806f-ac98-fc43f8a41f1e" class="bulleted-list"><li style="list-style-type:disc">기본적으로 아무 매출정보도 등록되지 않은 경우.  ‘ + 월간 매출 추가 ‘ 버튼을 눌러 매출 발생 월을 등록해주셔야 합니다. <br/>매출 발생 월은 예상 매출 월에 맞추어 기입해주시면 됩니다. <br/><strong>예시) 세금계산서가 10월에 발행될 예정이다. → 10월의 월간 매출 추가 등록.</strong><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-8053-82d2-e55cca685bfd" class="image"><a href="image%2011.png"><img style="width:332px" src="image%2011.png"/></a></figure></div><div style="display:contents" dir="auto"><ul id="29a8c8cf-1248-807b-ad8e-dec6bbfce4fc" class="bulleted-list"><li style="list-style-type:circle">매출 추가 → 10월 을 클릭한 모습입니다.</li></ul></div><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-80f3-8dc7-fbf16871596f" class="image"><a href="%EB%A7%A4%EC%B6%9C4.gif"><img style="width:653.984375px" src="%EB%A7%A4%EC%B6%9C4.gif"/></a></figure></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-80c0-8a93-e3fb0cff447e" class="">매출 월이 생성되었다면, 다음과 같은 예상 매출 내역을 작성하실 수 있습니다.<br/>진행 부서와 담당자를 확인해주시고, 강의/FT 매출, 과정 개발 매출, 진단 매출, 기타 매출 등을 적어주세요.<br/><br/>만약 여러 부서간 매출 분배가 발생하였다면, 매출 분배 버튼을 통하여, 분배 작성을 할 수 있습니다.<br/>* 매출 분배를 클릭하여 분배 매출을 만든 예시입니다.</p></div><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-80f2-9f0e-d77228e1e004" class="image"><a href="%EB%A7%A4%EC%B6%9C5.gif"><img style="width:653.953125px" src="%EB%A7%A4%EC%B6%9C5.gif"/></a></figure></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-805a-bcde-e7a8fc0fc140" class="">예상 매출을 다 작성하셨다면. 매출 저장을 눌러서 입력을 마무리해주세요.<br/>입력 된 매출은 추후 해당 과정의 상세 정보에서 확인하실 수 있습니다.</p></div><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-8061-a93b-c9a604ce49c3" class="image"><a href="image%2012.png"><img style="width:653.984375px" src="image%2012.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-802e-8e6b-ce88045d9c5d" class="">*특정 교육과정들의 경우에 한하여, 같은 이름/내용의 과정이 1년 중 반복해서 발생하는 경우가 있습니다.<br/>그런 경우를 위하여, 같은 내용의 과정을 반복해서 등록하는 피로감을 방지하기 위하여 각 월마다 매출을 반복해서 등록할 수 있게끔 만든 기능입니다.</p></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-807d-baa2-fc2faea7b9ae" class="">
+</p></div></li></ul></div></div></details></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">6. 제안 현황</summary><div class="indented"><div style="display:contents" dir="auto"><p id="2548c8cf-1248-80a7-ab94-cc6b6cf40efb" class="">현재 각 부서들의 제안 현황 및 미수주 과정을 볼 수 있습니다.</p></div><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-8046-833e-de59187a4332" class="image"><a href="image%2013.png"><img style="width:3840px" src="image%2013.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="29a8c8cf-1248-8025-ac26-ce29e922ce49" class="">각 카테고리를 오름차순/내림차순으로 정렬을 확인하실 수 있으며,<br/>우측 상단의 토글 버튼을 통하여 특정 부서의 제안 현황만 확인하시는 것 또한 가능합니다.<br/><br/>상단의 통합 검색의 경우<br/>부서, 기업명, 과정명, 프로그램 명 등의 검색어를 입력하여 진행사항을 검색해 볼 수 있습니다.<br/><strong>*기아 를 검색한 경우</strong></p></div><div style="display:contents" dir="ltr"><figure id="29a8c8cf-1248-80f2-af27-e539af6e1e6e" class="image"><a href="image%2014.png"><img style="width:681.96875px" src="image%2014.png"/></a></figure></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">7. 회의실 예약</summary><div class="indented"><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-807b-a820-cd1124899a6c" class="image"><a href="image%2015.png"><img style="width:709.9874877929688px" src="image%2015.png"/></a></figure></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-80ab-981d-c5a6e2c96eee" class="">등록 방법</h2></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8028-8149-f8b91c413d45" class="bulleted-list"><li style="list-style-type:disc">우측 상단에서 어느 회의실을 예약할지 카테고리를 선택합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-801a-84d5-cdecd0947b9c" class="bulleted-list"><li style="list-style-type:disc">선택 가능한 카테고리 목록 : <br/>오너스 5층 스튜디오, 12층 회의실 및 집중작업실, ZOOM, Webex, 교육용 MS 계정</li></ul></div><div style="display:contents" dir="auto"><p id="2158c8cf-1248-8034-a784-d96621a43428" class="">- 카테고리 선택 후 캘린더에서 원하는 날짜와 시간을 선택합니다.</p></div><div style="display:contents" dir="auto"><p id="2158c8cf-1248-8036-a231-ee316893eafa" class="">- 회의 목적, 참석자, 사용 시간을 입력합니다.</p></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">8. 개인 일정표</summary><div class="indented"><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-80df-aa40-f7979124d773" class="">등록 방법</h2></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-80ce-b5a2-f32ddb0a3f56" class="image"><a href="image%2016.png"><img style="width:709.9874877929688px" src="image%2016.png"/></a></figure></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80a2-bb62-da49c1ab182c" class="bulleted-list"><li style="list-style-type:disc">우상단의 일정 추가를 통해 일정 설정이 가능합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2548c8cf-1248-80e2-b278-c1219b333c6d" class="bulleted-list"><li style="list-style-type:disc">(중요) 제목을 적으실 때에는, 다음과 같은 순서를 꼭 지켜주시기 바랍니다. 하기 참조, 괄호 없어도 됨.</li></ul></div><div style="display:contents" dir="auto"><h2 id="2548c8cf-1248-809a-b0e1-ffae021f5956" class=""><strong>[강사명, *외부 강사 진행 시](지역)(시간)(과정명) <br/>위 순서로 일정의 제목을 적어주세요.</strong></h2></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">9. 매출 통계</summary><div class="indented"><div style="display:contents" dir="auto"><p id="2548c8cf-1248-80ab-a0e9-c0f00d7979e9" class="">매출 통계 부분에서는, 입력된 과정들의 매출 데이터를 확인해볼 수 있습니다.</p></div><div style="display:contents" dir="ltr"><figure id="2548c8cf-1248-80f8-b9d9-c67a20c3ae9f" class="image"><a href="image%2017.png"><img style="width:681.9874877929688px" src="image%2017.png"/></a></figure></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8044-b3bf-f2f38687f0f5" class="bulleted-list"><li style="list-style-type:disc">매출 통계는 월간, 분기, 반기, 연간으로 되어 있으며. 해당 시트들은 엑셀로 출력 또한 가능합니다.</li></ul></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">10. 교보재 관리 시스템</summary><div class="indented"><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-807e-b5ec-e26f5ecced9e" class="">사용 방법</h2></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80a6-81b6-ff75719d9fed" class="bulleted-list"><li style="list-style-type:disc">고객관리시스템과 별도의 서비스이므로, 로그인이 필요합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-803f-860f-d8cdfd8591bb" class="bulleted-list"><li style="list-style-type:disc">계정 정보는 초기 시스템 정보와 같습니다. ( 계정명 / 비밀번호 1 )</li></ul></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-80fd-a105-ce3f1efe550d" class="">물품 리스트</h2></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-8020-87ba-e0380babb64f" class="image"><a href="image%2018.png"><img style="width:709.9874877929688px" src="image%2018.png"/></a></figure></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-805f-9a7e-ecf71e871629" class="bulleted-list"><li style="list-style-type:disc">물품 리스트에는 현재 있는 전체 교보재 수량을 확인하실 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8098-a192-c7439bda9998" class="bulleted-list"><li style="list-style-type:disc">물품 갯수가 변동되었거나, 새로 등록되는 경우 물품 추가 및 수정을 통해 이를 수정할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-8008-a94f-f23e671beb37" class="">물품 반출</h2></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-8062-ba7a-f5922f92de08" class="image"><a href="image%2019.png"><img style="width:709.9874877929688px" src="image%2019.png"/></a></figure></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-803c-9919-f3315dc0e105" class="bulleted-list"><li style="list-style-type:disc">물품 반출 탭에서 물건을 반출할 수 있습니다.</li></ul></div><div style="display:contents" dir="auto"><ol type="1" id="2158c8cf-1248-8062-9d3c-cbe10a9ee705" class="numbered-list" start="1"><li>반출일과 반납 예정일 선택 </li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2158c8cf-1248-80b4-938e-fe357f11c918" class="numbered-list" start="2"><li>반출 물품 추가. 반출함에서 갯수 체크</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2158c8cf-1248-805e-b9fd-cd0e36c57e69" class="numbered-list" start="3"><li>반출 사유 작성</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2158c8cf-1248-801c-b096-c74ac3e46726" class="numbered-list" start="4"><li>예약 확인 진행</li></ol></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-80f4-a55b-f01e6017b65b" class="">나의 반출 현황</h2></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-807b-a5c1-db71e92cde0c" class="image"><a href="image%2020.png"><img style="width:709.9874877929688px" src="image%2020.png"/></a></figure></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8040-8997-c1e2fa96ab58" class="bulleted-list"><li style="list-style-type:disc">사용자가 반출했던 물건들에 대하여, 현황 파악 및 반납 진행을 하는 곳입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-80be-a2c1-dbabd3ba3303" class="bulleted-list"><li style="list-style-type:disc">반납 시에는 원위치시켰는지. 실제 교보재를 어디에 두었는지 등 코멘트로 적어주시면 감사하겠습니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-8037-b8f7-e98776f1fd6a" class="bulleted-list"><li style="list-style-type:disc"></li></ul></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-80bd-b111-fdbf7b643639" class="image"><a href="image%2021.png"><img style="width:709.9874877929688px" src="image%2021.png"/></a></figure></div><div style="display:contents" dir="auto"><h2 id="2158c8cf-1248-8029-9563-cd23595a257c" class="">물품 반출 현황</h2></div><div style="display:contents" dir="ltr"><figure id="2158c8cf-1248-80da-8fc2-eab8b26a22f8" class="image"><a href="image%2022.png"><img style="width:709.9500122070312px" src="image%2022.png"/></a></figure></div><div style="display:contents" dir="auto"><ul id="2158c8cf-1248-803d-942c-cfe2a9560c24" class="bulleted-list"><li style="list-style-type:disc">반출하고자 하는 교보재가 현재 다른 곳에 반출되어 있을 때, 이를 확인할 수 있는 전체 유저에 대한 반출 현황 체크 판입니다.</li></ul></div><div style="display:contents" dir="auto"><p id="2158c8cf-1248-80c8-b7d5-e02dbe1adbbf" class="">
+</p></div></div></details></div><div style="display:contents" dir="auto"><details open=""><summary style="font-weight:600;font-size:1.875em;line-height:1.3;margin:0">11. NAS 자동 동기화 확인</summary><div class="indented"><div style="display:contents" dir="auto"><p id="2548c8cf-1248-8038-a677-dfb392791ef1" class="">과정 등록 시 입력한 자료는, 고객관리 시스템 내에서도 확인할 수 있지만, NAS로도 확인 및 다운로드가 가능합니다.</p></div><div style="display:contents" dir="ltr"><figure id="29b8c8cf-1248-8080-9f3e-c72cc3feb6dd" class="image"><a href="NAS3.gif"><img style="width:1060.7750244140625px" src="NAS3.gif"/></a></figure></div><div style="display:contents" dir="auto"><p id="29b8c8cf-1248-8021-b1ae-e333aca70a74" class="">
+</p></div><div style="display:contents" dir="ltr"><figure id="29b8c8cf-1248-804e-81c5-cb53f9b9212b" class="image"><a href="NAS4.gif"><img style="width:1060.7750244140625px" src="NAS4.gif"/></a></figure></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-8012-9550-c0fba94e98ac" class=""><a href="https://rootcrm.synology.me:50001/">https://rootcrm.synology.me:50001/</a> </p></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-80bf-812b-fcabba001958" class=""><strong>ID : root001</strong><br/><strong>PW : Root0484!</strong></p></div></div></details></div><div style="display:contents" dir="auto"><p id="2548c8cf-1248-80b0-8c56-d248af42bda2" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
